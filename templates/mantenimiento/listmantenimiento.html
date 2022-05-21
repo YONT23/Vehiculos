@@ -1,0 +1,56 @@
+<!--{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+    <h1 class="pull-right">
+        <div class="row">
+            <div class="col-4">
+                <h3>Listado de Mantenimientos</h3>
+            </div>
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <a href="{% url 'mantenimiento:mantenimientoCreate' %}" class="btn btn-primary" style="margin-top: -10px; margin-bottom: 5px;">Adicionar</a>
+            </div>
+        </div>
+
+    </h1>
+
+        <table class="table table success table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Tipo de Mantenimiento</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Equipo</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% if mantenimiento %}
+                    {% for mantenimiento in mantenimiento %}
+                        <tr>
+                            <td>{{ mantenimiento.id }}</td>
+                            <td>{{ mantenimiento.fecha }}</td>
+                            <td>{{ mantenimiento.tipomantenimiento }}</td>
+                            <td>{{ mantenimiento.user }}</td>
+                            <td>{{ mantenimiento.equipo }}</td>
+                            <td>
+                                <a href="{% url 'mantenimiento:mantenimientoUpdate' mantenimiento.id %}" class="btn btn-warning">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="{% url 'mantenimiento:mantenimientoDelete' mantenimiento.id %}" class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <h3>No existen registros</h3>
+                {% endif %}
+            </tbody>
+        </table>
+
+{% endblock %}

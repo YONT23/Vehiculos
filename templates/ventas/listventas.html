@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+    <h1 class="pull-right">
+        <div class="row">
+            <div class="col-4">
+                <h3>Listado de Ventas</h3>
+            </div>
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <a href="{% url 'ventas:ventasCreate' %}" class="btn btn-primary" style="margin-top: -10px; margin-bottom: 5px;">Adicionar</a>
+            </div>
+        </div>
+
+    </h1>
+
+        <table class="table table success table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Valor Total</th>
+                <th scope="col">Tipos de Pago</th>
+                <th scope="col">Usuarios</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% if ventas %}
+                    {% for venta in ventas %}
+                        <tr>
+                            <td>{{ venta.id }}</td>
+                            <td>{{ venta.fecha }}</td>
+                            <td>{{ venta.valorTotal }}</td>
+                            <td>{{ venta.tipoPago }}</td>
+                            <td>{{ venta.user }}</td>
+                            <td>
+                                <a href="{% url 'ventas:ventasUpdate' venta.id %}" class="btn btn-warning">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="{% url 'ventas:ventasDelete' venta.id %}" class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <h3>No existen registros</h3>
+                {% endif %}
+            </tbody>
+        </table>
+
+{% endblock %}
